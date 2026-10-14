@@ -8,7 +8,7 @@
   },
   "Test B": {
     "status": "PASS",
-    "answer": "The salary statistics for the 20 employees are as follows:\n\n*   **Average (Mean):** 2,025\n*   **Median:** 2,050\n*   **Minimum:** 1,000\n*   **Maximum:** 3,200\n\nI obtained these figures by calculating the descriptive statistics for the `salary` column.",
+    "answer": "The salary statistics for the 20 employees are as follows:\n\n*   **Average (Mean):** 2,025\n*   **Median:** 2,050\n*   **Minimum:** 1,000\n*   **Maximum:** 3,200\n\nI obtained these figures by using the `calculate_statistics` tool on the `salary` column.",
     "tools": [
       "profile_dataset",
       "calculate_statistics"
@@ -16,7 +16,7 @@
   },
   "Test C": {
     "status": "PASS",
-    "answer": "The total salary for each department is as follows:\n\n*   **Eng:** 21,000\n*   **Sales:** 13,000\n*   **HR:** 6,500\n\nI obtained these figures by grouping the data by the `department` column and calculating the sum of the `salary` column for each group.",
+    "answer": "The total salary for each department is as follows:\n\n*   **Eng:** 21,000\n*   **Sales:** 13,000\n*   **HR:** 6,500\n\nI obtained these figures by using the `query_aggregate` tool to sum the `salary` column grouped by the `department` column.",
     "tools": [
       "profile_dataset",
       "query_aggregate"
@@ -31,7 +31,7 @@
   },
   "Test E": {
     "status": "PASS",
-    "answer": "The correlation between salary and bonus is 1.0, which indicates a perfect positive linear relationship between the two variables. I determined this by running a correlation analysis on the dataset.",
+    "answer": "The correlation between salary and bonus is 1.0, indicating a perfect positive linear relationship between the two variables. I determined this by running a correlation analysis on the dataset.",
     "tools": [
       "profile_dataset",
       "correlation_analysis"
@@ -47,7 +47,7 @@
   },
   "Test G": {
     "status": "PASS",
-    "answer": "The average marks in the dataset is 49.08. I calculated this using the `calculate_statistics` tool on the `marks` column.",
+    "answer": "The average (mean) score in the `marks` column is **49.08** (with a median of 48.50, a minimum of 20, and a maximum of 83 across 200 students). \n\nThis was calculated by running summary statistics on the `marks` column in the dataset.",
     "tools": [
       "profile_dataset",
       "calculate_statistics"
