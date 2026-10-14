@@ -1,0 +1,359 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#080807">
+  <meta name="description" content="ByteVerse — an intelligent data analysis laboratory">
+
+  <title>BYTEVERSE | AI ANALYSIS LAB</title>
+
+  <link rel="icon" href="data:,">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oxanium:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <!-- Application styling -->
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Three.js: foundation for the 3D holographic world -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body class="pre">
+
+  <!-- Background atmosphere & 3D Neural Universe -->
+  <div id="bg" aria-hidden="true">
+    <canvas id="bg-canvas"></canvas>
+  </div>
+
+  <!-- Main application header -->
+  <header class="topbar deploy">
+
+    <a class="brand" href="/" aria-label="ByteVerse home">
+      <div class="brand-mark" aria-hidden="true">B</div>
+
+      <div>
+        <div id="brand" class="brand-name">BYTEVERSE</div>
+        <div class="tag">INTELLIGENCE BEYOND DATA</div>
+      </div>
+    </a>
+
+    <div class="status" aria-live="polite">
+      <span id="led" class="led idle"></span>
+      <span id="state">SYSTEM STANDBY</span>
+    </div>
+
+    <div class="actions">
+      <button id="btn-replay" type="button">
+        REPLAY INTRO
+      </button>
+
+      <button id="btn-silence" type="button">
+        SILENCE VOICE
+      </button>
+    </div>
+
+  </header>
+
+  <!-- Main holographic laboratory -->
+  <main class="grid">
+
+    <!-- LEFT: Dataset, history, memory and settings -->
+    <aside class="panel side deploy">
+
+      <div class="panel-heading">
+        <span class="section-index">01</span>
+        <h2 class="h first">DATA CENTER</h2>
+      </div>
+
+      <div id="side-dataset" class="dim">
+        No dataset connected
+      </div>
+
+      <div class="panel-heading">
+        <span class="section-index">02</span>
+        <h2 class="h">ANALYSIS HISTORY</h2>
+      </div>
+
+      <ol id="history" class="list">
+        <li class="dim">Awaiting first analysis</li>
+      </ol>
+
+      <div class="panel-heading">
+        <span class="section-index">03</span>
+        <h2 class="h">PERSISTENT MEMORY</h2>
+      </div>
+
+      <ul id="memory" class="list"></ul>
+
+      <div class="panel-heading">
+        <span class="section-index">04</span>
+        <h2 class="h">AI SETTINGS</h2>
+      </div>
+
+      <label class="row">
+        <input type="checkbox" id="set-voice" checked>
+        Voice responses
+      </label>
+
+      <label class="row" for="set-rate">
+        Speech rate
+        <output id="out-rate">1.10x</output>
+      </label>
+
+      <input
+        type="range"
+        id="set-rate"
+        min="0.8"
+        max="1.4"
+        step="0.05"
+        value="1.1"
+      >
+
+      <label class="row" for="set-volume">Voice volume</label>
+
+      <input
+        type="range"
+        id="set-volume"
+        min="0"
+        max="1"
+        step="0.05"
+        value="0.8"
+      >
+
+      <label class="row">
+        <input type="checkbox" id="set-calm">
+        Reduce motion
+      </label>
+
+    </aside>
+
+    <!-- CENTER: AI visualization and real analysis workspace -->
+    <section class="center">
+
+      <!-- 3D AI stage: Three.js will render into these canvases -->
+      <section id="ai-stage" class="ai-stage panel deploy"
+               aria-label="Holographic AI visualization">
+
+        <div class="stage-topline">
+          <span class="eyebrow">BYTEVERSE / NEURAL INTERFACE</span>
+          <span id="ai-mode" class="mode-label">STANDBY</span>
+        </div>
+
+        <div class="hologram-world">
+
+          <!-- Focal Neural-network core -->
+          <div id="neural-globe" class="neural-globe">
+            <canvas id="globe-canvas"
+                    aria-label="Animated three-dimensional neural network core"></canvas>
+
+            <div class="globe-fallback" aria-hidden="true">
+              <span>NEURAL CORE ACTIVE</span>
+            </div>
+          </div>
+
+          <!-- Subtle holographic floor -->
+          <div class="hologram-floor" aria-hidden="true"></div>
+
+        </div>
+
+        <div class="ai-caption">
+          <div class="ai-identity">
+            <span class="status-dot"></span>
+            <span>BYTEVERSE INTELLIGENCE</span>
+          </div>
+
+          <p id="ai-message" aria-live="polite">
+            Awaiting initialization, sir.
+          </p>
+        </div>
+
+        <div class="stage-bottomline">
+          <span>NEURAL CORE <b id="neural-status">DORMANT</b></span>
+          <span>VOICE <b id="voice-status">READY</b></span>
+          <span>PROCESSING <b id="processing-status">IDLE</b></span>
+        </div>
+
+      </section>
+
+      <!-- Dataset upload -->
+      <section id="upload" class="panel upload deploy"
+               tabindex="0"
+               role="button"
+               aria-label="Upload a CSV or Excel dataset">
+
+        <div class="scan" aria-hidden="true"></div>
+
+        <p class="eyebrow">DATA INPUT INTERFACE</p>
+
+        <h2 id="upload-title">
+          Ready to explore your data?
+        </h2>
+
+        <p class="lead">
+          Your data. Your questions. Real analysis.
+        </p>
+
+        <p class="formats">
+          CSV · XLSX · MAX 25 MB
+          <br>
+          Drop your file here or press Enter to browse
+        </p>
+
+        <div class="sample-actions" style="margin-top: 14px; display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap;">
+          <span class="dim" style="font-size: 11px; letter-spacing: 0.05em;">OR EXPLORE SAMPLE:</span>
+          <button type="button" class="btn-sample" data-sample="sales.csv" style="padding: 4px 10px; font-size: 11px;">sales.csv</button>
+          <button type="button" class="btn-sample" data-sample="students.csv" style="padding: 4px 10px; font-size: 11px;">students.csv</button>
+        </div>
+
+        <p id="upload-msg" class="msg-line" role="status"></p>
+
+        <input
+          type="file"
+          id="file"
+          accept=".csv,.xlsx"
+          hidden
+        >
+
+      </section>
+
+      <!-- Active dataset details -->
+      <section id="dataset-panel" class="panel deploy" hidden>
+
+        <div class="ds-head">
+          <div>
+            <div class="eyebrow">ACTIVE DATASET</div>
+            <div id="ds-name" class="ds-name"></div>
+            <div id="ds-size" class="dim"></div>
+          </div>
+
+          <button id="btn-replace" type="button">
+            REPLACE DATASET
+          </button>
+        </div>
+
+        <div class="metrics">
+          <div>
+            <b id="m-rows">0</b>
+            <span>ROWS</span>
+          </div>
+
+          <div>
+            <b id="m-cols">0</b>
+            <span>COLUMNS</span>
+          </div>
+
+          <div>
+            <b id="m-missing">0</b>
+            <span>MISSING CELLS</span>
+          </div>
+
+          <div>
+            <b id="m-dups">0</b>
+            <span>DUPLICATE ROWS</span>
+          </div>
+        </div>
+
+        <h3 class="h">DETECTED COLUMNS</h3>
+        <div id="cols"></div>
+
+        <h3 class="h">DATA PREVIEW</h3>
+        <div id="preview" class="tablewrap"></div>
+
+        <h3 class="h">SUGGESTED ANALYSES</h3>
+        <div id="suggest"></div>
+
+      </section>
+
+      <!-- Actual answers and chart results -->
+      <section id="feed" aria-live="polite"></section>
+
+      <!-- Ask questions about the uploaded dataset -->
+      <form id="askbar" class="askbar" autocomplete="off">
+
+        <input
+          id="q"
+          type="text"
+          placeholder="Ask your AI about this dataset..."
+          disabled
+          aria-label="Ask a question about your data"
+        >
+
+        <button id="btn-mic" type="button" class="btn-mic" title="Voice query (Microphone)" aria-label="Microphone">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </button>
+
+        <button id="send" type="submit" disabled>
+          ANALYSE
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- RIGHT: Real system and tool information -->
+    <aside class="panel side deploy">
+
+      <div class="panel-heading">
+        <span class="section-index">05</span>
+        <h2 class="h first">SYSTEM STATUS</h2>
+      </div>
+
+      <dl class="kv">
+        <dt>STATE</dt>
+        <dd id="sys-state">STANDBY</dd>
+
+        <dt>BACKEND</dt>
+        <dd id="sys-engine">CHECKING</dd>
+
+        <dt>DATASET</dt>
+        <dd id="sys-dataset">NONE</dd>
+
+        <dt>VOICE</dt>
+        <dd id="sys-voice">READY</dd>
+      </dl>
+
+      <div class="panel-heading">
+        <span class="section-index">06</span>
+        <h2 class="h">ANALYSIS TOOLS</h2>
+      </div>
+
+      <ul id="tools" class="list"></ul>
+
+      <div class="panel-heading">
+        <span class="section-index">07</span>
+        <h2 class="h">EXECUTION LOG</h2>
+      </div>
+
+      <div id="log" class="log" aria-live="polite">
+        <div class="dim">Waiting for system initialization</div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Chart rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+
+  <!-- Sound engine -->
+  <script src="/static/audio.js"></script>
+
+  <!-- Application controller -->
+  <script type="module" src="/static/app.js"></script>
+
+</body>
+</html>

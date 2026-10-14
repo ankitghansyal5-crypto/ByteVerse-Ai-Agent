@@ -1,0 +1,68 @@
+{
+  "Test A": {
+    "status": "PASS",
+    "answer": "The dataset contains 20 rows and 6 columns. There are 2 duplicate rows in the dataset.",
+    "tools": [
+      "profile_dataset"
+    ]
+  },
+  "Test B": {
+    "status": "PASS",
+    "answer": "The salary statistics for the 20 employees are as follows:\n\n*   **Average (Mean):** 2,025\n*   **Median:** 2,050\n*   **Minimum:** 1,000\n*   **Maximum:** 3,200\n\nI obtained these figures by calculating the descriptive statistics for the `salary` column.",
+    "tools": [
+      "profile_dataset",
+      "calculate_statistics"
+    ]
+  },
+  "Test C": {
+    "status": "PASS",
+    "answer": "The total salary for each department is as follows:\n\n*   **Eng:** 21,000\n*   **Sales:** 13,000\n*   **HR:** 6,500\n\nI obtained these figures by grouping the data by the `department` column and calculating the sum of the `salary` column for each group.",
+    "tools": [
+      "profile_dataset",
+      "query_aggregate"
+    ]
+  },
+  "Test D": {
+    "status": "PASS",
+    "answer": "The dataset has one column with missing values:\n\n*   **rating**: 4 missing values.\n\nAll other columns (`employee_id`, `department`, `salary`, `bonus`, and `fixed_allowance`) have no missing values. I determined this by profiling the dataset.",
+    "tools": [
+      "profile_dataset"
+    ]
+  },
+  "Test E": {
+    "status": "PASS",
+    "answer": "The correlation between salary and bonus is 1.0, which indicates a perfect positive linear relationship between the two variables. I determined this by running a correlation analysis on the dataset.",
+    "tools": [
+      "profile_dataset",
+      "correlation_analysis"
+    ]
+  },
+  "Test F": {
+    "status": "PASS",
+    "answer": "The average salary across departments is as follows:\n\n*   **Engineering (Eng):** 2,333.33\n*   **Sales:** 2,166.67\n*   **HR:** 1,300.00\n\nI performed a permutation test to determine if these differences are statistically significant. The resulting p-value is **0.0322**, which is below the 0.05 threshold. Therefore, the difference in average salary across departments is **statistically significant**.",
+    "tools": [
+      "profile_dataset",
+      "compare_groups"
+    ]
+  },
+  "Test G": {
+    "status": "PASS",
+    "answer": "The average marks in the dataset is 49.08. I calculated this using the `calculate_statistics` tool on the `marks` column.",
+    "tools": [
+      "profile_dataset",
+      "calculate_statistics"
+    ]
+  },
+  "Test H": {
+    "status": "PASS",
+    "details": "All error status codes mapped to actionable user messages"
+  },
+  "Test I": {
+    "status": "PASS",
+    "details": "Robust input validation and descriptive error responses"
+  },
+  "Test J": {
+    "status": "PASS",
+    "details": "Full HTTP stack with upload, ask, trace, and Plotly chart"
+  }
+}
